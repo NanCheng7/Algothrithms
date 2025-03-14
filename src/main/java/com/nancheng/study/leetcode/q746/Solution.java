@@ -7,14 +7,26 @@ package com.nancheng.study.leetcode.q746;
  */
 public class Solution {
     public int minCostClimbingStairs(int[] cost) {
-        int l0 = cost[0],l1 = cost[1],res = Math.min(l0,l1);
-        int index = 2;
-        while (index < cost.length) {
-            l0 = l1;
-            l1 = res;
-            res = Math.min(l0,l1) + cost[index];
-            index ++;
+        int pre = 0, cur = 0;
+        for ( int i = 2; i <= cost.length; i++)
+        {
+            int next = Math.min(pre + cost[i - 2], cur + cost[i - 1]);
+            pre = cur;
+            cur = next;
         }
-        return res;
+        return cur;
+    }
+
+     public int minCostClimbingStairs1(int[] cost) {
+        int n = cost.length;
+        int[] dp = new int[n];
+        for (int i = 0; i < n; i++) {
+            if (i < 2) {
+                dp[i] = cost[i];
+            } else {
+              dp[i] = Math.min(dp[i-2],dp[i-1]) + cost[i];
+            }
+        }
+        return Math.min(dp[n-1],dp[n-2]);
     }
 }
