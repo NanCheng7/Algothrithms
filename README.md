@@ -1,4 +1,4 @@
 # A open source project for algothrithms
 
-[!note]
-just for algothrithms training...
+> [!note]
+> just for algothrithms training...
